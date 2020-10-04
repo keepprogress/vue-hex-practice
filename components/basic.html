@@ -124,29 +124,32 @@
 </div>
 
 <div id="app">
-  <table class="table">
-    <thead>
-    </thead>
-    <tbody>
+  <table is ="row-component" :person="item">
+    
+  
       <!-- <row-component v-for="(item, key) in data" :person="item" :key="key"></row-component> -->
-      <tr is ="row-component" v-for="(item, key) in data" :person="item" :key="key">
-      </tr>
+
       <!-- <tr v-for="(item, key) in data" :item="item" :key="key">
         <td>{{ item.name }}</td>
         <td>{{ item.cash }}</td>
         <td>{{ item.icash }}</td>
       </tr> -->
-    </tbody>
+  
   </table>
 </div>
 
 <script type="text/x-template" id="rowComponentTemplate">
-  <tr>
-    <td>{{ person.name }}</td>
-    <td>{{ person.cash }}</td>
-    <td>{{ person.icash }}</td>
-  </tr>  
-
+  <table>
+    <thead>
+    </thead>
+    <tbody>
+      <tr v-for="(item, key) in data"  :key="key">
+        <td>{{ person.name }}</td>
+        <td>{{ person.cash }}</td>
+        <td>{{ person.icash }}</td>
+      </tr>
+    </tbody>
+  </table> 
 </script>
 
 <script>
