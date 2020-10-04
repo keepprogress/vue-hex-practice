@@ -124,7 +124,7 @@
 </div>
 
 <div id="app">
-  <table is ="row-component" :person="item">
+  <table is ="row-component" v-for="(item, key) in data" :person="item" :key="key" class="table">
     
   
       <!-- <row-component v-for="(item, key) in data" :person="item" :key="key"></row-component> -->
@@ -143,13 +143,15 @@
     <thead>
     </thead>
     <tbody>
-      <tr v-for="(item, key) in data"  :key="key">
+      <tr>
         <td>{{ person.name }}</td>
         <td>{{ person.cash }}</td>
         <td>{{ person.icash }}</td>
       </tr>
-    </tbody>
-  </table> 
+      <tbody>
+  </table>  
+</div>
+
 </script>
 
 <script>

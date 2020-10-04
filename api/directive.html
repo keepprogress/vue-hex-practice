@@ -132,10 +132,12 @@ Vue.directive('validator', {
     console.log('bind', el, binding, vnode);
     el.className = binding.value.className
 
-    var currentModel = vnode.data.directives.find(function(o) {
+    // v-model
+    // v-model 值
+    var vModel = vnode.data.directives.find(function(o) {
         return o.name === 'model';
     }).expression;
-    var value = vnode.context[currentModel];
+    var value = vnode.context[vModel];
 
     var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (!re.test(value)) {
