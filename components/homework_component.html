@@ -128,9 +128,9 @@
 </div>
 
 <div id="app">
-  <select name="" id="" class="form-control mb-3">
+  <select id="selectcity" class="form-control mb-3">
     <option value="" disabled>--- 請選擇城市 ---</option>
-    <option value=""></option>
+    <option v-for="County in filterCounty" value="County">{{ County }}</option>
   </select>
   <div>
     <h4>關注城市</h4>
@@ -201,18 +201,43 @@ var app = new Vue({
     filter: '',
   },
   // 請在此撰寫 JavaScript
-  methods: {
-    getData() {
-      const vm = this;
-      const api = 'http://opendata2.epa.gov.tw/AQI.json';
+  created: function (){
+    const vm = this;
+    const api = 'http://opendata2.epa.gov.tw/AQI.json';
 
-      // 使用 jQuery ajax
-      $.get(api).then(function( response ) {
-        vm.data = response;
-        console.log(response)
-      });
+    // 使用 jQuery ajax
+    $.get(api).then(function( response ) {
+      vm.data = response;
+      console.log(response)
+    });
+  },
+  // computed: {
+  //   filterCounty: function(item) {
+  //     var vm = this;
+  //     var newset = vm.data.map(function(item) {
+  //       return item.County;
+  //     })
+  //     const newCounty = new Set()
+  //     newset.forEach(function(County) {
+  //       newCounty.add(County)
+  //     });
+  //     console.log(Array.from(newCounty));
+  //     return Array.from(newCounty)
+  //   },
+  // },
+  computed: {
+    filterCounty: function(item) {
+      var vm = this;
+      var newset = vm.data.map(function(item) {
+        return item.County;
+      })
+      const newCounty = newset.filter(function(element, index, arr) {
+        return arr.indexOf(element) === index;
+      })
+      console.log(newCounty)
+      return newCounty;
     },
-  }
+  },
 });
 </script>
 <!-- 
